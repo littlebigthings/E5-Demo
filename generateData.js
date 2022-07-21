@@ -21,10 +21,11 @@ class GENERATEDATA {
                 o[key] = this.generate(o[key])
         }
 
-        if (o.hasOwnProperty("max")) {
-            if (o.hasOwnProperty("min")) {
-                o.data = this.randomIntFromInterval(o.min, o.max)
-            }
+        if (o.hasOwnProperty("max") && o.hasOwnProperty("min")) {
+            o.data = this.randomIntFromInterval(o.min, o.max)
+        }
+        if (o.hasOwnProperty("rangeMin") && o.hasOwnProperty("rangeMax") && o.hasOwnProperty("length")) {
+            o.chartData = this.randomIntArrayInRange(o.rangeMin, o.rangeMax, o.length)
         }
 
         return o;
@@ -32,6 +33,13 @@ class GENERATEDATA {
 
     randomIntFromInterval(min, max) { // min and max included 
         return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    randomIntArrayInRange(min, max, n = 1) {
+        return Array.from(
+            { length: n },
+            () => Math.floor(Math.random() * (max - min + 1)) + min
+        );
     }
 
     setCookie(name, value, days) {
@@ -93,10 +101,15 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            byDay: [],
-            byWeek: [],
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
         },
-        chartTwoDataPoints: [],
+        chartTwoDataPoints: {
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
+        },
     },
     Authorization: {
         TransactionsCompleted: {
@@ -144,10 +157,15 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            byDay: [],
-            byWeek: [],
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
         },
-        chartTwoDataPoints: [],
+        chartTwoDataPoints: {
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
+        },
     },
     POT: {
         TransactionsCompleted: {
@@ -195,10 +213,15 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            byDay: [],
-            byWeek: [],
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
         },
-        chartTwoDataPoints: [],
+        chartTwoDataPoints: {
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
+        },
     },
     Erma: {
         TransactionsCompleted: {
@@ -246,10 +269,15 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            byDay: [0,1,2,3,4,5,6,7,],
-            byWeek: [0,1,2,3,4,5,6,7,]
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
         },
-        chartTwoDataPoints: [0,1,2,3,4,5,6,7,],
+        chartTwoDataPoints: {
+            rangeMin: 100,
+            rangeMax: 300,
+            length: 10,
+        },
     },
 }
 new GENERATEDATA(AnalyticsData, "AnalyticsData")
