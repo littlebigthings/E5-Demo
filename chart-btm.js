@@ -26,10 +26,7 @@ function createChart() {
             let tooltipEL = document.createElement('DIV');
             tooltipEL.classList.add('tooltip-wrp');
             let tooltipTop = document.createElement('DIV');
-            let tooltipDot = document.createElement('DIV');
-            tooltipDot.classList.add('tooltip-dot');
             tooltipTop.classList.add('tooltip-top');
-            tooltipTop.appendChild(tooltipDot);
             // append to parent
             tooltipEL.appendChild(tooltipTop);
             chart.canvas.parentNode.appendChild(tooltipEL);
@@ -47,28 +44,32 @@ function createChart() {
         if (tooltip.body) {
             const titleLines = tooltip.title || [];
             const bodyLines = tooltip.body.map(b => b.lines);
-            const headEl = document.createElement("div");
+            const tooltipBody = document.createElement("div");
 
-            // 4A title loop
-            titleLines.forEach(title => {
-                const tooltipTitle = document.createTextNode(`${title.split('m')[0]}% of transactions`);
-                headEl.classList.add("tooltip-head");
-                headEl.appendChild(tooltipTitle);
-                if (tooltipEl != null) tooltipEl.querySelector(".tooltip-top").appendChild(headEl);
-            })
 
-            // 4B body loop
-            const tooltipBody = document.createElement('div');
-            tooltipBody.classList.add("tooltip-btm");
-            const textNode = document.createElement('div');
-            const textLabel = document.createTextNode(`are processed in less than ${bodyLines[0]} mins`);
-            textNode.classList.add("tooltip-btm-text");
+            // 4B title loop
+            const tooltipTitleElm = document.createElement('div');
+            tooltipTitleElm.classList.add("tooltip-top");
+            const TitleTextNode = document.createElement('div');
+            const titleText = document.createTextNode(`${bodyLines[0]}% of transactions`);
+            TitleTextNode.classList.add("tooltip-head");
             // append + textlabel
-            textNode.appendChild(textLabel);
-            tooltipBody.appendChild(textNode);
+            TitleTextNode.appendChild(titleText);
+            tooltipTitleElm.appendChild(TitleTextNode);
+            if (tooltipEl != null) tooltipEl.appendChild(tooltipTitleElm);
 
+            // 4A body loop
+            titleLines.forEach(title => {
+                const textNode = document.createElement("div");
+                const textLabel = document.createTextNode(`are processed in less than ${title} mins`);
+                tooltipBody.classList.add("tooltip-btm");
+                textNode.classList.add("tooltip-btm-text");
+                textNode.appendChild(textLabel)
+                tooltipBody.appendChild(textNode);
+                if (tooltipEl != null) tooltipEl.appendChild(tooltipBody);
+            })
             if (tooltipEl != null) {
-                const heads = tooltipEl.querySelectorAll('.tooltip-head');
+                const heads = tooltipEl.querySelectorAll('.tooltip-top');
                 const btms = tooltipEl.querySelectorAll('.tooltip-btm');
                 // remove old children
                 heads.forEach(head => {
@@ -78,14 +79,59 @@ function createChart() {
                     btm.remove();
                 })
                 // add new children
-                tooltipEl.querySelector(".tooltip-top").appendChild(headEl);
+                let tooltipTop = document.createElement("div");
+                tooltipTop.classList.add("tooltip-top")
+                let tooltipDot = document.createElement('DIV');
+                tooltipDot.classList.add('tooltip-dot');
+                tooltipTop.appendChild(tooltipDot)
+                tooltipEl.appendChild(tooltipTop)
+                tooltipEl.querySelector(".tooltip-top").appendChild(TitleTextNode);
                 tooltipEl.appendChild(tooltipBody)
 
                 tooltipEl.style.opacity = 1;
                 // positioning of the tooltip.
                 const { offsetLeft: positionX, offsetTop: positionY } = chart.canvas;
-                tooltipEl.style.left = positionX + tooltip.caretX + 'px';
-                tooltipEl.style.top = positionY + tooltip.caretY + 'px';
+
+                // Tooltip height and width
+                const { height, width } = tooltipEl.getBoundingClientRect();
+
+                // Carets
+                const caretY = tooltip.caretY;
+                const caretX = tooltip.caretX;
+
+                // alingment
+                const yAlign = tooltip.yAlign;
+                const xAlign = tooltip.xAlign;
+
+                // Final coordinates
+                let top = positionY + caretY - height;
+                let left = positionX + caretX - width / 2;
+                let space = 1; // This for making space between the caret and the element.
+
+                // yAlign could be: `top`, `bottom`, `center`
+                if (yAlign === "top") {
+                    top += height + space;
+                } else if (yAlign === "center") {
+                    top += height / 2;
+                } else if (yAlign === "bottom") {
+                    top -= space;
+                }
+                // xAlign could be: `left`, `center`, `right`
+                if (xAlign === "left") {
+                    left = left + width / 2 - tooltip.xPadding - space / 2;
+                    if (yAlign === "center") {
+                        left = left + space * 2;
+                    }
+                } else if (xAlign === "right") {
+                    left -= width / 2;
+                    if (yAlign === "center") {
+                        left = left - space;
+                    } else {
+                        left += space;
+                    }
+                }
+                tooltipEl.style.left = left - 6 + 'px';
+                tooltipEl.style.top = top - 2 + 'px';
             }
         }
     }
@@ -96,22 +142,23 @@ function createChart() {
             datasets: [{
                 data: [0, 0, 0, 10, 40, 48, 40, 10, 0, 0, 0,],
                 backgroundColor: [
-                    'rgba(131, 88, 221, 1)',
+                    'rgba(214, 198, 245, 1)',
                 ],
                 borderColor: [
-                    '#BC9CFF',
+                    'rgba(188, 156, 255, 1)',
                 ],
                 borderWidth: 1,
                 fill: 1,
+                pointHoverBackgroundColor: 'rgba(255, 255, 255, 1)',
 
             },
             {
                 data: [],
                 backgroundColor: [
-                    'rgba(131, 88, 221, 0.1)',
+                    'rgba(248, 242, 255, 1)',
                 ],
                 borderColor: [
-                    '#BC9CFF',
+                    '#0000',
                 ],
                 borderWidth: 1,
                 fill: 1,
@@ -122,16 +169,17 @@ function createChart() {
             {
                 data: [0, 0, 0, 10, 40, 48, 40, 10, 0, 0, 0,],
                 backgroundColor: [
-                    'rgba(131, 88, 221, 0.1)',
+                    'rgba(248, 242, 255, 1)',
                 ],
                 borderColor: [
-                    '#BC9CFF',
+                    'rgba(131, 88, 221, 1)',
                 ],
                 borderWidth: 1,
                 fill: true,
                 pointHitRadius: 0,
                 pointRadius: 0,
                 hoverRadius: 0,
+
             },
             ]
         },
@@ -139,11 +187,12 @@ function createChart() {
             plugins: {
                 legend: {
                     display: false,
-                    position: 'bottom',
                 },
                 tooltip: {
                     enabled: false,
                     external: externalTooltipHandler,
+                    xAlign: 'right',
+                    yAlign: 'bottom',
                 }
 
             },
@@ -162,6 +211,9 @@ function createChart() {
                     },
                 },
                 y: {
+                    ticks: {
+                        display: false
+                    },
                     beginAtZero: true,
                     endAtZero: true,
                     grid: {
