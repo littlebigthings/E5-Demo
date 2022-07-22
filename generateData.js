@@ -1,3 +1,4 @@
+import checkCookie from "./checkCookie.js";
 class GENERATEDATA {
     constructor(data, name) {
         this.data = data;
@@ -6,7 +7,12 @@ class GENERATEDATA {
     }
 
     init() {
-        this.setDataTocookie();
+        this.checkForCookie();
+    }
+
+    checkForCookie(){
+        let haveCookie = checkCookie(this.name);
+        if(haveCookie == null)this.setDataTocookie();
     }
 
     setDataTocookie() {
@@ -86,8 +92,8 @@ const AnalyticsData = {
                 max: 12990,
             },
             FTE: {
-                min: 3,
-                max: 8,
+                min: 2.5,
+                max: 6.6,
             }
         },
         ThroughputPerHour: {
@@ -96,8 +102,8 @@ const AnalyticsData = {
                 max: 600,
             },
             avgMinTransctions: {
-                min: 10,
-                max: 50,
+                min: 1,
+                max: 10,
             }
         },
         chartOneDataPoints: {
@@ -142,8 +148,8 @@ const AnalyticsData = {
                 max: 12990,
             },
             FTE: {
-                min: 3,
-                max: 8,
+                min: 2.5,
+                max: 6.6,
             }
         },
         ThroughputPerHour: {
@@ -152,8 +158,8 @@ const AnalyticsData = {
                 max: 600,
             },
             avgMinTransctions: {
-                min: 10,
-                max: 50,
+                min: 1,
+                max: 10,
             }
         },
         chartOneDataPoints: {
@@ -198,8 +204,8 @@ const AnalyticsData = {
                 max: 12990,
             },
             FTE: {
-                min: 3,
-                max: 8,
+                min: 2.5,
+                max: 6.6,
             }
         },
         ThroughputPerHour: {
@@ -208,8 +214,8 @@ const AnalyticsData = {
                 max: 600,
             },
             avgMinTransctions: {
-                min: 10,
-                max: 50,
+                min: 1,
+                max: 10,
             }
         },
         chartOneDataPoints: {
@@ -254,8 +260,8 @@ const AnalyticsData = {
                 max: 12990,
             },
             FTE: {
-                min: 3,
-                max: 8,
+                min: 2.5,
+                max: 6.6,
             }
         },
         ThroughputPerHour: {
@@ -264,8 +270,8 @@ const AnalyticsData = {
                 max: 600,
             },
             avgMinTransctions: {
-                min: 10,
-                max: 50,
+                min: 1,
+                max: 10,
             }
         },
         chartOneDataPoints: {
