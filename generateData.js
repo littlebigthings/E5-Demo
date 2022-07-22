@@ -107,9 +107,16 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            byDay:{
+                rangeMin: 100,
+                rangeMax: 300,
+                length: 10,
+            },
+            byWeek:{
+                rangeMin: 100,
+                rangeMax: 200,
+                length: 12,
+            }
         },
         chartTwoDataPoints: {
             rangeMin: 100,
@@ -163,9 +170,16 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            byDay:{
+                rangeMin: 100,
+                rangeMax: 300,
+                length: 10,
+            },
+            byWeek:{
+                rangeMin: 100,
+                rangeMax: 200,
+                length: 12,
+            }
         },
         chartTwoDataPoints: {
             rangeMin: 100,
@@ -219,9 +233,16 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            byDay:{
+                rangeMin: 100,
+                rangeMax: 300,
+                length: 10,
+            },
+            byWeek:{
+                rangeMin: 100,
+                rangeMax: 200,
+                length: 12,
+            }
         },
         chartTwoDataPoints: {
             rangeMin: 100,
@@ -275,9 +296,16 @@ const AnalyticsData = {
             }
         },
         chartOneDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            byDay:{
+                rangeMin: 100,
+                rangeMax: 300,
+                length: 10,
+            },
+            byWeek:{
+                rangeMin: 100,
+                rangeMax: 200,
+                length: 12,
+            }
         },
         chartTwoDataPoints: {
             rangeMin: 100,
