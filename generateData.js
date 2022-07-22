@@ -109,19 +109,19 @@ const AnalyticsData = {
         chartOneDataPoints: {
             byDay:{
                 rangeMin: 100,
-                rangeMax: 300,
-                length: 10,
+                rangeMax: 400,
+                length: 20,
             },
             byWeek:{
-                rangeMin: 100,
-                rangeMax: 200,
-                length: 12,
+                rangeMin: 200,
+                rangeMax: 400,
+                length: 20,
             }
         },
         chartTwoDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            rangeMin: 0,
+            rangeMax: 50,
+            length: 11,
         },
     },
     Authorization: {
@@ -172,19 +172,19 @@ const AnalyticsData = {
         chartOneDataPoints: {
             byDay:{
                 rangeMin: 100,
-                rangeMax: 300,
-                length: 10,
+                rangeMax: 400,
+                length: 20,
             },
             byWeek:{
-                rangeMin: 100,
-                rangeMax: 200,
-                length: 12,
+                rangeMin: 200,
+                rangeMax: 400,
+                length: 20,
             }
         },
         chartTwoDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            rangeMin: 0,
+            rangeMax: 50,
+            length: 11,
         },
     },
     POT: {
@@ -235,19 +235,19 @@ const AnalyticsData = {
         chartOneDataPoints: {
             byDay:{
                 rangeMin: 100,
-                rangeMax: 300,
-                length: 10,
+                rangeMax: 400,
+                length: 20,
             },
             byWeek:{
-                rangeMin: 100,
-                rangeMax: 200,
-                length: 12,
+                rangeMin: 200,
+                rangeMax: 400,
+                length: 20,
             }
         },
         chartTwoDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            rangeMin: 0,
+            rangeMax: 50,
+            length: 11,
         },
     },
     Erma: {
@@ -298,19 +298,19 @@ const AnalyticsData = {
         chartOneDataPoints: {
             byDay:{
                 rangeMin: 100,
-                rangeMax: 300,
-                length: 10,
+                rangeMax: 400,
+                length: 20,
             },
             byWeek:{
-                rangeMin: 100,
-                rangeMax: 200,
-                length: 12,
+                rangeMin: 200,
+                rangeMax: 400,
+                length: 20,
             }
         },
         chartTwoDataPoints: {
-            rangeMin: 100,
-            rangeMax: 300,
-            length: 10,
+            rangeMin: 0,
+            rangeMax: 50,
+            length: 11,
         },
     },
 }
