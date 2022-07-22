@@ -111,11 +111,13 @@ const AnalyticsData = {
                 rangeMin: 100,
                 rangeMax: 400,
                 length: 20,
+                labels:[21, 22, 23, 24, 25, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
                 length: 20,
+                labels:['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
             }
         },
         chartTwoDataPoints: {
@@ -174,11 +176,13 @@ const AnalyticsData = {
                 rangeMin: 100,
                 rangeMax: 400,
                 length: 20,
+                labels:[21, 22, 23, 24, 25, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
                 length: 20,
+                labels:['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
             }
         },
         chartTwoDataPoints: {
@@ -237,11 +241,13 @@ const AnalyticsData = {
                 rangeMin: 100,
                 rangeMax: 400,
                 length: 20,
+                labels:[21, 22, 23, 24, 25, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
                 length: 20,
+                labels:['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
             }
         },
         chartTwoDataPoints: {
@@ -300,11 +306,13 @@ const AnalyticsData = {
                 rangeMin: 100,
                 rangeMax: 400,
                 length: 20,
+                labels:[21, 22, 23, 24, 25, 28, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
                 length: 20,
+                labels:['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
             }
         },
         chartTwoDataPoints: {

@@ -120,6 +120,7 @@ class SHOWANALYTICSDATA {
 
     UpdateChart(updateBy, updateBtm, workflow) {
         let chartTopData;
+        let chartTopLabelData;
         let chartBtmData = this.data[workflow].chartTwoDataPoints.chartData
         if (updateBtm) {
             this.chartBtm.data.datasets.forEach((data, index) => {
@@ -130,11 +131,13 @@ class SHOWANALYTICSDATA {
             this.chartBtm.update()
         } else {
             if (updateBy == 'day') {
+                chartTopLabelData = this.data[workflow].chartOneDataPoints.byDay.labels;
                 chartTopData = this.data[workflow].chartOneDataPoints.byDay.chartData;
                 this.chartTop.data.datasets[0].data = chartTopData;
                 this.chartTop.update()
             }
             else if (updateBy == 'week') {
+                chartTopLabelData = this.data[workflow].chartOneDataPoints.byWeek.labels;
                 chartTopData = this.data[workflow].chartOneDataPoints.byWeek.chartData;
                 this.chartTop.data.datasets[0].data = chartTopData;
                 this.chartTop.update()
