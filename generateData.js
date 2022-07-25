@@ -314,4 +314,111 @@ const AnalyticsData = {
         },
     },
 }
+const WorkFlowSummeryData = {
+    RCD: {
+        scheduled:{
+            min: 50,
+            max: 150,
+        },
+        wait:{
+            min: 50,
+            max: 150,
+        },
+        inProgress:{
+            min: 50,
+            max: 150,
+        },
+        failed:{
+            min: 50,
+            max: 150,
+        },
+        needsIntervention:{
+            min: 50,
+            max: 150,
+        },
+        completed:{
+            min: 100,
+            max: 150,
+        }
+    },
+    Authorization: {
+        scheduled:{
+            min: 50,
+            max: 150,
+        },
+        wait:{
+            min: 50,
+            max: 150,
+        },
+        inProgress:{
+            min: 50,
+            max: 150,
+        },
+        failed:{
+            min: 50,
+            max: 150,
+        },
+        needsIntervention:{
+            min: 50,
+            max: 150,
+        },
+        completed:{
+            min: 100,
+            max: 150,
+        }
+    },
+    POT: {
+        scheduled:{
+            min: 50,
+            max: 150,
+        },
+        wait:{
+            min: 50,
+            max: 150,
+        },
+        inProgress:{
+            min: 50,
+            max: 150,
+        },
+        failed:{
+            min: 50,
+            max: 150,
+        },
+        needsIntervention:{
+            min: 50,
+            max: 150,
+        },
+        completed:{
+            min: 100,
+            max: 150,
+        }
+    },
+    Erma: {
+        scheduled:{
+            min: 50,
+            max: 150,
+        },
+        wait:{
+            min: 50,
+            max: 150,
+        },
+        inProgress:{
+            min: 50,
+            max: 150,
+        },
+        failed:{
+            min: 50,
+            max: 150,
+        },
+        needsIntervention:{
+            min: 50,
+            max: 150,
+        },
+        completed:{
+            min: 100,
+            max: 150,
+        }
+    },
+}
 new GENERATEDATA(AnalyticsData, "AnalyticsData")
+new GENERATEDATA(WorkFlowSummeryData, "WorkflowSummeryData")
