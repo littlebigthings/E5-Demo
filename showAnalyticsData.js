@@ -21,6 +21,8 @@ class SHOWANALYTICSDATA {
         this.chartTop = document.getElementById("mycanvastwo");
         this.chartBtm = document.getElementById("mycanvas");
 
+        this.monthBlock = document.querySelector(".month-wrap");
+
         this.data;
         this.chartOne;
         this.chartTwo;
@@ -134,6 +136,7 @@ class SHOWANALYTICSDATA {
                 chartTopLabelData = this.data[workflow].chartOneDataPoints.byDay.labels;
                 chartTopData = this.data[workflow].chartOneDataPoints.byDay.chartData;
                 this.chartTop.data.datasets[0].data = chartTopData;
+                this.monthBlock.style.display = 'flex';
                 this.chartTop.data.labels = ['21', '22', '23', '24', '25', '28', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'],
                 this.chartTop.update()
             }
@@ -142,6 +145,7 @@ class SHOWANALYTICSDATA {
                 chartTopData = this.data[workflow].chartOneDataPoints.byWeek.chartData;
                 this.chartTop.data.datasets[0].data = chartTopData;
                 this.chartTop.data.datasets[0].data = chartTopData;
+                this.monthBlock.style.display = 'none';
                 this.chartTop.data.labels = ['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
                 this.chartTop.update()
             }
