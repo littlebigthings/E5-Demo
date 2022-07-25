@@ -1,4 +1,3 @@
-let cookieNameArr = ['AnalyticsData']
 class WORKFLOWFILTER {
     constructor() {
         this.tagElements = document.querySelectorAll("[data-filter='tags']");
