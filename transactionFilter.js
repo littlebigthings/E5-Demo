@@ -16,6 +16,10 @@ class SEARCHFILTERS {
         this.patientNameInput = document.querySelector("[data-search='patient-name']");
         this.arrivedTimeInput = document.querySelector("[data-search='arrived-time']");
 
+        // variable to store date and time inputs
+        this.dateRange = null;
+        this.dateWithTimeRange = null;
+
         this.init();
     }
 
@@ -25,12 +29,25 @@ class SEARCHFILTERS {
     }
     // integrate datepicker into Billing Period and Arrived Time field.
     addDatePicker() {
-
+        if (this.billingPeriodInput != undefined && this.arrivedTimeInput != undefined) {
+            this.dateRange = flatpickr(this.billingPeriodInput, {
+                minDate: "2000-01",
+                maxDate:"today",
+                mode: "range",
+                dateFormat: "d M, Y",
+            });
+            this.dateWithTimeRange = flatpickr(this.arrivedTimeInput, {
+                minDate: "2000-01",
+                maxDate:"today",
+                dateFormat: "M d, Y h:i K",
+                enableTime: true,
+            });
+        }
     }
 
     // add input listeners and date + time change listener.
     addListeners() {
-        if (this.idInput != undefined && this.patientIdInput != undefined && this.patientNameInput != undefined) {
+        if (this.idInput != undefined && this.patientIdInput != undefined && this.patientNameInput != undefined && this.dateRange != undefined && this.dateWithTimeRange != undefined) {
 
             this.idInput.addEventListener('input', (evt) => {
                 this.filterById(evt.target.value);
@@ -40,10 +57,18 @@ class SEARCHFILTERS {
                 this.filterByPatientId(evt.target.value);
             })
 
-            this.patientNameInput.addEventListener('input', (evt)=> {
+            this.patientNameInput.addEventListener('input', (evt) => {
                 this.filterByName(evt.target.value);
             })
 
+            // seperate listeners for datepicker elements
+            this.dateRange.config.onClose.push((selectedDates, dateStr, instance) =>{
+                console.log(dateStr)
+            })
+
+            this.dateWithTimeRange.config.onClose.push((selectedDates, dateStr, instance) =>{
+                console.log(dateStr)
+            })
 
         }
     }
