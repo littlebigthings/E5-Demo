@@ -71,11 +71,11 @@ class SEARCHFILTERS {
 
             // seperate listeners for datepicker elements
             this.dateRange.config.onClose.push((selectedDates, dateStr, instance) => {
-                console.log(dateStr)
+                this.filterByBillingPeriod(dateStr);
             })
 
             this.dateWithTimeRange.config.onClose.push((selectedDates, dateStr, instance) => {
-                console.log(dateStr)
+                this.filterByArrivedTime(dateStr);
             })
 
         }
@@ -143,8 +143,33 @@ class SEARCHFILTERS {
     }
 
     // filter data based on billing period
-    filterByBillingPeriod(dataRange) {
-
+    filterByBillingPeriod(dateRange) {
+        if (dateRange.length > 0) {
+            let startDate = dateRange.split(" to ")[0]
+            let stopDate = dateRange.split(" to ")[1]
+            let dateRangeVal = this.getDates(startDate, stopDate)
+            if (this.allBillingPeriodElements.length > 0) {
+                this.allBillingPeriodElements.forEach((item, index) => {
+                    let parent = item.closest("[data-filter='row']");
+                    let startDate = item.textContent.split("-")[0]
+                    let stopDate = item.textContent.split("-")[1]
+                    let itemDateRange = this.getDates(startDate, stopDate)
+                    dateRangeVal.forEach(date => {
+                        if (itemDateRange.includes(date) && !this.filteredBillingPeriodData.includes(parent)) {
+                            this.filteredBillingPeriodData.push(parent);
+                        }
+                        else if (!itemDateRange.includes(date) && this.filteredBillingPeriodData.includes(parent)) {
+                            let idxOfelm = this.filteredBillingPeriodData.indexOf(parent);
+                            this.filteredBillingPeriodData.splice(idxOfelm, 1)
+                        }
+                    })
+                })
+            }
+            else {
+                this.filteredBillingPeriodData = [];
+            }
+            this.getCommonAndFilter();
+        }
     }
 
     // filter data based on Arrived time
@@ -154,7 +179,63 @@ class SEARCHFILTERS {
 
     getCommonAndFilter() {
         let filteredArray = [];
-        if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0) {
+        if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("idData, pIdData, nameData, dateRange")
+            this.filteredIdData.forEach(item => {
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("idData, pIdData, dateRange")
+            this.filteredIdData.forEach(item => {
+                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("idData, nameData, dateRange")
+            this.filteredIdData.forEach(item => {
+                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredPatientNameData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("pIdData, nameData, dateRange")
+            this.filteredPatientNameData.forEach(item => {
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("idData, DateRAnge")
+            this.filteredIdData.forEach(item => {
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredIdData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("nameData, dateRange")
+            this.filteredPatientNameData.forEach(item => {
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredPatientNameData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
+            console.log("pIdData, dateRange")
+            this.filteredBillingPeriodData.forEach(item => {
+                if (this.filteredPatientIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
+                    filteredArray.push(item)
+                }
+            })
+        }
+        else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0) {
             console.log("idData, pIdData, nameData")
             this.filteredIdData.forEach(item => {
                 if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && !filteredArray.includes(item)) {
@@ -201,6 +282,11 @@ class SEARCHFILTERS {
             filteredArray = this.filteredPatientNameData
 
         }
+        else if (this.filteredBillingPeriodData.length > 0) {
+            console.log("only date range")
+            filteredArray = this.filteredBillingPeriodData
+
+        }
         else {
             filteredArray = this.allRows;
         }
@@ -220,6 +306,19 @@ class SEARCHFILTERS {
         }
     }
 
+    getDates(start, end) {
+        for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
+            let data = dt.toLocaleDateString('en-us', {
+                weekday: 'long', year: 'numeric', month: 'short', day: 'numeric'
+            })
+            let dateArr = data.replace(" ", "").split(",")
+            let year = dateArr[2]
+            let month = dateArr[1].split(" ")[0]
+            let day = dateArr[1].split(" ")[1]
+            arr.push(`${day} ${month},${year}`);
+        }
+        return arr;
+    };
 }
 
 new SEARCHFILTERS;
