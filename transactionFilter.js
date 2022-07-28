@@ -47,7 +47,7 @@ class SEARCHFILTERS {
             this.dateWithTimeRange = flatpickr(this.arrivedTimeInput, {
                 minDate: "2000-01",
                 maxDate: "today",
-                dateFormat: "M d, Y h:i K",
+                dateFormat: "d M, Y, G:i K",
                 enableTime: true,
             });
         }
@@ -144,12 +144,12 @@ class SEARCHFILTERS {
 
     // filter data based on billing period
     filterByBillingPeriod(dateRange) {
-        if (dateRange.length > 0) {
+        if (dateRange.length > 0 && this.billingPeriodInput.value.length > 0) {
             let startDate = dateRange.split(" to ")[0]
             let stopDate = dateRange.split(" to ")[1]
             let dateRangeVal = this.getDates(startDate, stopDate)
             if (this.allBillingPeriodElements.length > 0) {
-                this.allBillingPeriodElements.forEach((item, index) => {
+                this.allBillingPeriodElements.forEach(item => {
                     let parent = item.closest("[data-filter='row']");
                     let startDate = item.textContent.split("-")[0]
                     let stopDate = item.textContent.split("-")[1]
@@ -165,16 +165,33 @@ class SEARCHFILTERS {
                     })
                 })
             }
-            else {
-                this.filteredBillingPeriodData = [];
-            }
-            this.getCommonAndFilter();
         }
+        else {
+            this.filteredBillingPeriodData = [];
+        }
+        this.getCommonAndFilter();
     }
 
     // filter data based on Arrived time
     filterByArrivedTime(dateTime) {
-
+        if(dateTime.length > 0 && this.arrivedTimeInput.value.length > 0){
+            if(this.allArrivedTimeElements.length>0){
+                this.allArrivedTimeElements.forEach(item => {
+                    let parent = item.closest("[data-filter='row']");
+                    if(item.textContent.includes(dateTime) && !this.filteredArrivedTimeData.includes(parent)){
+                        this.filteredArrivedTimeData.push(parent);
+                    }
+                    else if (!item.textContent.includes(dateTime) && this.filteredArrivedTimeData.includes(parent)) {
+                        let idxOfelm = this.filteredArrivedTimeData.indexOf(parent);
+                        this.filteredArrivedTimeData.splice(idxOfelm, 1)
+                    }
+                })
+            }
+        }
+        else{
+            this.filteredArrivedTimeData = [];
+        }
+        this.getCommonAndFilter();
     }
 
     getCommonAndFilter() {
@@ -285,6 +302,11 @@ class SEARCHFILTERS {
         else if (this.filteredBillingPeriodData.length > 0) {
             console.log("only date range")
             filteredArray = this.filteredBillingPeriodData
+
+        }
+        else if (this.filteredArrivedTimeData.length > 0) {
+            console.log("only date with time range")
+            filteredArray = this.filteredArrivedTimeData
 
         }
         else {
