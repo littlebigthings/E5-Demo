@@ -50,6 +50,9 @@ class SEARCHFILTERS {
                 dateFormat: "d M, Y, G:i K",
                 enableTime: true,
             });
+            // changing background color.
+            this.billingPeriodInput.style.backgroundColor = '#ffff';
+            this.arrivedTimeInput.style.backgroundColor = '#ffff';
         }
     }
 
