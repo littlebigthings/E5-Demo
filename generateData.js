@@ -110,12 +110,12 @@ const AnalyticsData = {
             byDay:{
                 rangeMin: 100,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             }
         },
         chartTwoDataPoints: {
@@ -173,12 +173,12 @@ const AnalyticsData = {
             byDay:{
                 rangeMin: 100,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             }
         },
         chartTwoDataPoints: {
@@ -236,12 +236,12 @@ const AnalyticsData = {
             byDay:{
                 rangeMin: 100,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             }
         },
         chartTwoDataPoints: {
@@ -299,12 +299,12 @@ const AnalyticsData = {
             byDay:{
                 rangeMin: 100,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             },
             byWeek:{
                 rangeMin: 200,
                 rangeMax: 400,
-                length: 20,
+                length: 30,
             }
         },
         chartTwoDataPoints: {
