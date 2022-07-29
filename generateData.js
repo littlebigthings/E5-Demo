@@ -29,9 +29,13 @@ class GENERATEDATA {
 
         if (o.hasOwnProperty("max") && o.hasOwnProperty("min")) {
             o.data = this.randomIntFromInterval(o.min, o.max)
+            delete o.max;
+            delete o.min;
         }
         if (o.hasOwnProperty("rangeMin") && o.hasOwnProperty("rangeMax") && o.hasOwnProperty("length")) {
             o.chartData = this.randomIntArrayInRange(o.rangeMin, o.rangeMax, o.length)
+            delete o.rangeMin;
+            delete o.rangeMax;
         }
 
         return o;
