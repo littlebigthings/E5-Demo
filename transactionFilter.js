@@ -28,6 +28,9 @@ class SEARCHFILTERS {
         this.filteredBillingPeriodData = [];
         this.filteredArrivedTimeData = [];
 
+        // variable to store filtered data
+        this.filteredArray = [];
+
         this.init();
     }
 
@@ -198,100 +201,100 @@ class SEARCHFILTERS {
     }
 
     getCommonAndFilter() {
-        let filteredArray = [];
+        this.filteredArray = [];
         if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, pIdData, nameData, dateRange, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, pIdData, dateRange, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length > 0) {
             // console.log("idData, nameData, dateRange, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length > 0) {
             // console.log("pIdData, nameData, dateRange, ArrivedTime")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, DateRAnge, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredBillingPeriodData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length> 0) {
             // console.log("nameData, dateRange, ArrivedTime")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredBillingPeriodData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length> 0) {
             // console.log("pIdData, dateRange, ArrivedTime")
             this.filteredBillingPeriodData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, pIdData, nameData, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, pIdData, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("idData, nameData, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("pIdData, nameData, ArrivedTime")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("IdData, ArrivedTime")
             this.filteredIdData.forEach(item => {
-                if (this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredIdData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
 
@@ -299,8 +302,8 @@ class SEARCHFILTERS {
         else if (this.filteredPatientIdData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("pIdData, ArrivedTime")
             this.filteredPatientIdData.forEach(item => {
-                if(this.filteredArrivedTimeData.includes(item) && this.filteredPatientIdData.includes(item) && !filteredArray.includes(item)){
-                    filteredArray.push(item)
+                if(this.filteredArrivedTimeData.includes(item) && this.filteredPatientIdData.includes(item) && !this.filteredArray.includes(item)){
+                    this.filteredArray.push(item)
                 }
             })
 
@@ -308,8 +311,8 @@ class SEARCHFILTERS {
         else if (this.filteredPatientNameData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("nameData, ArrivedTime")
             this.filteredPatientNameData.forEach(item => {
-                if(this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !filteredArray.includes(item)){
-                    filteredArray.push(item)
+                if(this.filteredPatientNameData.includes(item) && this.filteredArrivedTimeData.includes(item) && !this.filteredArray.includes(item)){
+                    this.filteredArray.push(item)
                 }
             })
 
@@ -317,8 +320,8 @@ class SEARCHFILTERS {
         else if (this.filteredBillingPeriodData.length > 0 && this.filteredArrivedTimeData.length>0) {
             // console.log("daterange, ArrivedTime")
             this.filteredBillingPeriodData.forEach(item =>{
-                if(this.filteredArrivedTimeData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)){
-                    filteredArray.push(item)
+                if(this.filteredArrivedTimeData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)){
+                    this.filteredArray.push(item)
                 }
             })
 
@@ -326,123 +329,124 @@ class SEARCHFILTERS {
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("idData, pIdData, nameData, dateRange")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("idData, pIdData, dateRange")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("idData, nameData, dateRange")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("pIdData, nameData, dateRange")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("idData, DateRAnge")
             this.filteredIdData.forEach(item => {
-                if (this.filteredBillingPeriodData.includes(item) && this.filteredIdData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredIdData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("nameData, dateRange")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredBillingPeriodData.includes(item) && this.filteredPatientNameData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredBillingPeriodData.includes(item) && this.filteredPatientNameData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientIdData.length > 0 && this.filteredBillingPeriodData.length > 0) {
             // console.log("pIdData, dateRange")
             this.filteredBillingPeriodData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredBillingPeriodData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0 && this.filteredPatientNameData.length > 0) {
             // console.log("idData, pIdData, nameData")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientIdData.length > 0) {
             // console.log("idData, pIdData")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredIdData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0 && this.filteredPatientNameData.length > 0) {
             // console.log("idData, nameData")
             this.filteredIdData.forEach(item => {
-                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientNameData.includes(item) && this.filteredIdData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredPatientNameData.length > 0 && this.filteredPatientIdData.length > 0) {
             // console.log("pIdData, nameData")
             this.filteredPatientNameData.forEach(item => {
-                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && !filteredArray.includes(item)) {
-                    filteredArray.push(item)
+                if (this.filteredPatientIdData.includes(item) && this.filteredPatientNameData.includes(item) && !this.filteredArray.includes(item)) {
+                    this.filteredArray.push(item)
                 }
             })
         }
         else if (this.filteredIdData.length > 0) {
             // console.log("IdData")
-            filteredArray = this.filteredIdData;
+            this.filteredArray = this.filteredIdData;
 
         }
         else if (this.filteredPatientIdData.length > 0) {
             // console.log("pIdData")
-            filteredArray = this.filteredPatientIdData
+            this.filteredArray = this.filteredPatientIdData
 
         }
         else if (this.filteredPatientNameData.length > 0) {
             // console.log("nameData")
-            filteredArray = this.filteredPatientNameData
+            this.filteredArray = this.filteredPatientNameData
 
         }
         else if (this.filteredBillingPeriodData.length > 0) {
             // console.log("only date range")
-            filteredArray = this.filteredBillingPeriodData
+            this.filteredArray = this.filteredBillingPeriodData
 
         }
         else if (this.filteredArrivedTimeData.length > 0) {
             // console.log("only date with time range")
-            filteredArray = this.filteredArrivedTimeData
+            this.filteredArray = this.filteredArrivedTimeData
 
         }
         else {
-            filteredArray = this.allRows;
+            // this.filteredArray = this.allRows;
+            this.checkInputsVal()
         }
-        // console.log(filteredArray)
-        this.hideAndShowRows(filteredArray)
+        // console.log(this.filteredArray)
+        this.hideAndShowRows(this.filteredArray)
     }
-
+    // function to show and hide rows.
     hideAndShowRows(filteredArray) {
         if (this.allRows.length > 0) {
             this.allRows.forEach(row => {
@@ -455,6 +459,7 @@ class SEARCHFILTERS {
         }
     }
 
+    // function to generates range of dates.
     getDates(start, end) {
         for (var arr = [], dt = new Date(start); dt <= new Date(end); dt.setDate(dt.getDate() + 1)) {
             let data = dt.toLocaleDateString('en-us', {
@@ -468,6 +473,14 @@ class SEARCHFILTERS {
         }
         return arr;
     };
+
+    // function to check inputs and reset data
+    checkInputsVal(){
+        if(!this.idInput.value.length>0 && !this.patientIdInput.value.length > 0 && !this.patientNameInput.value.length >0 && !this.billingPeriodInput.value.length > 0 && !this.arrivedTimeInput.value.length > 0){
+            this.filteredArray = this.allRows;
+            this.hideAndShowRows(this.filteredArray)
+        }
+    }
 }
 
 new SEARCHFILTERS;
