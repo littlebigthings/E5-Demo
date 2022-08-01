@@ -55,8 +55,8 @@ class SHOWANALYTICSDATA {
                         this.UpdateChart(clickedOnData, false, this.currentWorkflow);
                     }
                     else {
-                        clickedOnData = clickedOn.textContent;
-                        this.currentWorkflow = clickedOnData;
+                        clickedOnData = clickedOn.textContent.split(" ").join("");
+                        this.currentWorkflow = clickedOnData.split(" ").join("");
                         this.updateTitleAndResetStyle(clickedOn);
                         this.updateAnalyticsData(clickedOnData);
                         this.UpdateChart(clickedOnData, true, this.currentWorkflow);

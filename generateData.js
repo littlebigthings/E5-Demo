@@ -191,7 +191,7 @@ const AnalyticsData = {
             length: 11,
         },
     },
-    POT: {
+    ClaimsSubmission: {
         TransactionsCompleted: {
             numberOfTransctionsRange: {
                 min: 2000,
@@ -254,7 +254,7 @@ const AnalyticsData = {
             length: 11,
         },
     },
-    Erma: {
+    EligibilityManagement: {
         TransactionsCompleted: {
             numberOfTransctionsRange: {
                 min: 2000,
@@ -371,7 +371,7 @@ const WorkFlowSummeryData = {
             max: 150,
         }
     },
-    POT: {
+    ClaimsSubmission: {
         scheduled:{
             min: 50,
             max: 150,
@@ -397,7 +397,7 @@ const WorkFlowSummeryData = {
             max: 150,
         }
     },
-    Erma: {
+    EligibilityManagement: {
         scheduled:{
             min: 50,
             max: 150,

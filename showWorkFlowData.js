@@ -27,7 +27,7 @@ class SHOWWORKFLOWDATA {
         if (this.workflowDropdownElms.length > 0) {
             this.workflowDropdownElms.forEach(item => {
                 item.addEventListener('click', (evt) => {
-                    let clickedOn = evt.currentTarget.textContent;
+                    let clickedOn = evt.currentTarget.textContent.split(" ").join("");
                     this.updateTopBars(clickedOn);
                     this.updateBottomBars(clickedOn);
                     this.updateTitleAndResetStyle(evt.currentTarget);
