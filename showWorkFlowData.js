@@ -86,7 +86,8 @@ class SHOWWORKFLOWDATA {
     setBarHeight() {
         if (this.bottomBarsElms.length > 0) {
             this.bottomBarsElms.forEach(bar => {
-                bar.textContent = bar.textContent.split(" ").join("");
+                let AttrVal = bar.getAttribute("data-category")
+                bar.setAttribute("data-category", AttrVal.split(" ").join(""));
                 let mainParent = bar.closest(".summary-item");
                 let heightValArr = [...mainParent.querySelectorAll("[data-height='value']")]
                 let heightValLength = heightValArr.length;
