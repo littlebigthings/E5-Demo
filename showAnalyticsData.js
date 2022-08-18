@@ -2,6 +2,8 @@ import checkCookie from "./checkCookie.js";
 
 class SHOWANALYTICSDATA {
     constructor() {
+        this.$dashboardWrapper = document.querySelector(".dashboard-wrapper");
+
         this.addClickListenerElm = document.querySelectorAll("[data-click]");
         this.dropDownHead = document.querySelector("[data-change='dropdown-head']");
 
@@ -20,8 +22,15 @@ class SHOWANALYTICSDATA {
 
         this.chartTop = document.getElementById("mycanvastwo");
         this.chartBtm = document.getElementById("mycanvas");
+        this.chartRcd = document.getElementById("mycanvasrcd");
 
         this.monthBlock = document.querySelector(".month-wrap");
+
+        this.$rcdComponent = document.querySelector("[data-comp='rcd']");
+        this.$otherComponent = document.querySelector("[data-comp='other']");
+        this.$tabItems = document.querySelectorAll("[data-option]");
+        this.$allTabs = document.querySelectorAll("[data-tab]");
+        this.$stickyWrapper = document.querySelector(".sticky-wrapper");
 
         this.data;
         this.chartOne;
@@ -40,6 +49,7 @@ class SHOWANALYTICSDATA {
         if (haveCookie != null) {
             this.data = JSON.parse(haveCookie);
             this.addListener();
+            this.addObserver();
         }
     }
 
@@ -54,7 +64,20 @@ class SHOWANALYTICSDATA {
                         clickedOnData = clickedOn.getAttribute('data-click');
                         this.UpdateChart(clickedOnData, false, this.currentWorkflow);
                     }
+                    else if (clickedOn.hasAttribute("data-name")) {
+                        if (clickedOn.getAttribute("data-name") == "rcd") {
+                            if (this.$rcdComponent.classList.contains("hide-pane")) {
+                                this.$rcdComponent.classList.remove("hide-pane");
+                                this.$otherComponent.classList.add("hide-pane");
+                                this.updateTitleAndResetStyle(clickedOn);
+                            }
+                        }
+                    }
                     else {
+                        if (this.$otherComponent.classList.contains("hide-pane")) {
+                            this.$otherComponent.classList.remove("hide-pane");
+                            this.$rcdComponent.classList.add("hide-pane");
+                        }
                         clickedOnData = clickedOn.textContent.split(" ").join("");
                         this.currentWorkflow = clickedOnData.split(" ").join("");
                         this.updateTitleAndResetStyle(clickedOn);
@@ -68,6 +91,54 @@ class SHOWANALYTICSDATA {
             this.drawChart()
             this.addClickListenerElm[0].click();
         }
+        if (this.$tabItems.length > 0) {
+            this.$tabItems.forEach(tab => {
+                tab.addEventListener("click", (evt) => {
+                    let tabClicked = evt.currentTarget;
+                    let getTabName = tabClicked && tabClicked.getAttribute("data-option")
+                    let getTabElement = getTabName.length > 0 && document.querySelector(`[data-tab='${getTabName}']`);
+                    if (getTabElement != undefined) {
+                        let elDistanceToTop = window.pageYOffset + getTabElement.getBoundingClientRect().top;
+                        let stickyWrapperHeight = this.$stickyWrapper.getBoundingClientRect().height;
+                        console.log(elDistanceToTop)
+                        this.$dashboardWrapper.scrollBy({
+                            top: elDistanceToTop - stickyWrapperHeight,
+                            behavior: 'smooth'
+                        });
+                    }
+                })
+            })
+        }
+    }
+
+    addObserver(){
+        if(this.$allTabs.length > 0){
+            this.$allTabs.forEach(tab =>{
+                this.observeScroll(tab)
+            })
+        }
+    }
+
+    observeScroll(wrapper) {
+        this.observer = new IntersectionObserver((wrapper) => {
+            if (wrapper[0]['isIntersecting'] == true) {
+                let elID = wrapper[0].target.getAttribute("data-tab");
+                this.activateCategory(elID);
+            }
+        }, { root: null, threshold: 0.4, rootMargin: '0px' });
+        this.observer.observe(wrapper);
+    }
+
+    activateCategory(id) {
+       this.$tabItems.forEach(tab => {
+           let tabAttr = tab.getAttribute("data-option");
+           if (!tab.classList.contains("active-tab") && id === tabAttr) {
+                tab.classList.add("active-tab");
+            }
+            else if (tab.classList.contains("active-tab") && id !== tabAttr){
+                tab.classList.remove("active-tab")
+            }
+        })
     }
 
     updateTitleAndResetStyle(elmToUpdate) {
@@ -139,7 +210,7 @@ class SHOWANALYTICSDATA {
                 this.monthBlock.style.display = 'flex';
                 this.chartTop.data.datasets[0].fill = true;
                 this.chartTop.data.labels = ['21', '22', '23', '24', '25', '28', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21'],
-                this.chartTop.update()
+                    this.chartTop.update()
             }
             else if (updateBy == 'week') {
                 chartTopLabelData = this.data[workflow].chartOneDataPoints.byWeek.labels;
@@ -149,7 +220,7 @@ class SHOWANALYTICSDATA {
                 this.chartTop.data.datasets[0].fill = false;
                 this.monthBlock.style.display = 'none';
                 this.chartTop.data.labels = ['02/07/2022', '02/14/2022', '02/21/2022', '03/01/2022'],
-                this.chartTop.update()
+                    this.chartTop.update()
             }
         }
     }
@@ -158,6 +229,8 @@ class SHOWANALYTICSDATA {
 
         const ctxOne = document.getElementById('mycanvastwo').getContext('2d');
         const ctxTwo = document.getElementById('mycanvas').getContext('2d');
+        const ctxThree = document.getElementById('mycanvasrcd').getContext('2d');
+
 
         const tooltipLine = {
             id: 'tooltipLine',
@@ -231,6 +304,9 @@ class SHOWANALYTICSDATA {
                 if (chart.canvas.id == 'mycanvas') {
                     titleText = document.createTextNode(`${bodyLines[0]}% of transactions`);
                 }
+                else if (chart.canvas.id == 'mycanvasrcd') {
+                    titleText = document.createTextNode(`${bodyLines[0]}m transactions`);
+                }
                 else {
                     titleText = document.createTextNode(`${bodyLines[0]} transactions`);
                 }
@@ -273,7 +349,12 @@ class SHOWANALYTICSDATA {
                     if (chart.canvas.id == 'mycanvas') {
                         tooltipDot.style.backgroundColor = 'rgba(188, 156, 255, 1)';
                         tooltipEl.style.maxWidth = '9.9em';
-                    } else {
+                    } 
+                    else if (chart.canvas.id == 'mycanvasrcd') {
+                        tooltipDot.style.backgroundColor = '#58CAFB';
+                        tooltipEl.style.maxWidth = '9em';
+                    } 
+                    else {
                         tooltipDot.style.backgroundColor = 'rgba(132, 94, 212, 1)';
                         tooltipEl.style.maxWidth = '8.19em';
                     }
@@ -301,11 +382,11 @@ class SHOWANALYTICSDATA {
                     let top = positionY + caretY - height;
                     let left = positionX + caretX - width / 2;
                     let space; // This for making space between the caret and the element.
-                    if(chart.canvas.id == 'mycanvas'){
-                        space=1;
+                    if (chart.canvas.id == 'mycanvas') {
+                        space = 1;
                     }
-                    else{
-                        space=10;
+                    else {
+                        space = 10;
                     }
 
                     // yAlign could be: `top`, `bottom`, `center`
@@ -502,6 +583,77 @@ class SHOWANALYTICSDATA {
                 pointRadius: 2,
             },
             plugins: [tooltipLine],
+        });
+
+        this.chartRcd = new Chart(ctxThree, {
+            type: 'line',
+            data: {
+                labels: ['18/07', '19/07', '20/07', '21/07', '22/07', '23/07', '24/07'],
+                datasets: [{
+                    // data update here.
+                    data: [30, 35, 25, 32, 20, 37, 20],
+                    backgroundColor: [
+                        '#D2F2FF',
+                    ],
+                    borderColor: [
+                        '#58CAFB',
+                    ],
+                    borderWidth: 2,
+                    fill: true,
+                    pointHoverBackgroundColor: '#58CAFB',
+
+                },
+                ]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        display: false,
+                    },
+                    tooltip: {
+                        enabled: false,
+                        external: externalTooltipHandler,
+                        xAlign: 'center',
+                        yAlign: 'bottom',
+                    }
+
+                },
+                tension: 0.1,
+                interaction: {
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            display: false,
+                            borderColor: "rgba(191, 191, 191, 1)",
+                            borderDash: [5, 1],
+                            borderWidth: 1,
+                            borderDashOffset: 1,
+                        },
+                    },
+                    y: {
+                        beginAtZero: true,
+                        endAtZero: true,
+                        grid: {
+                            drawTicks: false,
+                            display: true,
+                            borderColor: "white",
+                            borderDash: [8, 4],
+                        },
+                        stacked: false,
+                        ticks: {
+                            display: false,
+                          }
+                    },
+
+                },
+                pointBackgroundColor: "#58CAFB",
+                pointBorderColor: "#58CAFB",
+                pointBorderWidth: 1,
+                pointRadius: 2,
+            },
+            // plugins: [tooltipLine],
         });
     }
 
