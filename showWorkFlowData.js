@@ -1,4 +1,6 @@
 import checkCookie from "./checkCookie.js";
+import filterFromURl from "./filterOutUrl.js";
+
 class SHOWWORKFLOWDATA {
     constructor() {
 
@@ -17,7 +19,8 @@ class SHOWWORKFLOWDATA {
     init() {
         let haveCookie = checkCookie("WorkflowSummeryData")
         if (haveCookie != null) {
-            this.data = JSON.parse(haveCookie)
+            let dataFromLocalStorage = localStorage.getItem('WorkflowSummeryData')
+            this.data = JSON.parse(dataFromLocalStorage)
             this.addListnerToDd();
             this.setBarHeight();
         }
@@ -34,7 +37,18 @@ class SHOWWORKFLOWDATA {
                 })
             })
             // activateDefault
-            this.workflowDropdownElms[0].click();
+            // check if url contains the workflow data.
+            let urlHaveWorkflow = filterFromURl(document.location);
+            if(urlHaveWorkflow != undefined && urlHaveWorkflow.length > 1){
+                this.workflowDropdownElms.forEach(item => {
+                    if(item.textContent.split(" ").join("") === urlHaveWorkflow){
+                        item.click();
+                    }
+                })
+            }else{
+                this.workflowDropdownElms[0].click();
+            }
+            // this.workflowDropdownElms[0].click();
         }
     }
 
