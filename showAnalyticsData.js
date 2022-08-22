@@ -1,4 +1,5 @@
 import checkCookie from "./checkCookie.js";
+import filterFromURl from "./filterOutUrl.js";
 
 class SHOWANALYTICSDATA {
     constructor() {
@@ -47,7 +48,8 @@ class SHOWANALYTICSDATA {
     checkForCookie() {
         let haveCookie = checkCookie('AnalyticsData');
         if (haveCookie != null) {
-            this.data = JSON.parse(haveCookie);
+            let dataFromLocalStorage = localStorage.getItem('AnalyticsData')
+            this.data = JSON.parse(dataFromLocalStorage);
             this.addListener();
             this.addObserver();
         }
@@ -89,7 +91,17 @@ class SHOWANALYTICSDATA {
             })
             // default active category
             this.drawChart()
-            this.addClickListenerElm[0].click();
+            // check if url contains the workflow data.
+            let urlHaveWorkflow = filterFromURl(document.location);
+            if(urlHaveWorkflow != undefined && urlHaveWorkflow.length > 1){
+                this.addClickListenerElm.forEach(item => {
+                    if(item.textContent.split(" ").join("") === urlHaveWorkflow){
+                        item.click();
+                    }
+                })
+            }else{
+                this.addClickListenerElm[0].click();
+            }
         }
         if (this.$tabItems.length > 0) {
             this.$tabItems.forEach(tab => {
@@ -162,7 +174,6 @@ class SHOWANALYTICSDATA {
 
     updateAnalyticsData(workflow) {
         if (workflow.length > 0) {
-
             // update Transactions completed data
             let transactionCompletedData = this.data[workflow].TransactionsCompleted.numberOfTransctionsRange.data;
             this.completedTransactionElm.textContent = transactionCompletedData;
