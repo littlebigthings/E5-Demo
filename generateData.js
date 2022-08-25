@@ -524,8 +524,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -550,8 +550,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -576,8 +576,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -602,8 +602,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -628,8 +628,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -654,8 +654,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -680,8 +680,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
@@ -706,8 +706,8 @@ const WorkFlowSummeryData = {
             max: 150,
         },
         failed:{
-            min: 50,
-            max: 150,
+            min: 10,
+            max: 30,
         },
         needsIntervention:{
             min: 50,
